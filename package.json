@@ -1,0 +1,19 @@
+{
+  "name": "commentor",
+  "version": "1.0.0",
+  "description": "This tool let's you make a jira comment from the terminal.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rob-bar/Commentor.git"
+  },
+  "author": "Robbie Bardijn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rob-bar/Commentor/issues"
+  },
+  "homepage": "https://github.com/rob-bar/Commentor#readme"
+}
