@@ -1,22 +1,36 @@
 #!/usr/bin/env node
 
 var inquirer = require('inquirer');
-var simpleGit = require('simple-git')( process.cwd() );
-
+var simpleGit = require('simple-git')(process.cwd());
 var fs = require('fs');
 var ejs = require('ejs');
-var templateString = fs.readFileSync(__dirname + '/template.ejs', 'utf-8');
+var tpl = fs.readFileSync(__dirname + '/template.ejs', 'utf-8');
+var reviews = fs.readFileSync(__dirname + '/review.ejs', 'utf-8');
 var chalk = require('chalk');
 var ncp = require('copy-paste');
+var _ = require('underscore');
+var opn = require('opn');
 
 var branch = '';
 var ticket = '';
 var project = '';
+var origin = '';
 
-var getCodereview = function(answers) {
+var getCodereview = function(answers, cb) {
   simpleGit.getRemotes(true, function(err, res) {
     if(!err) {
-      console.log(res);
+      var branch = 'issue-' + answers.ticket;
+      origin  = _.findWhere(res, {name: 'origin'}).refs.fetch ;
+      project = origin.split('/')[1].replace('.git', '');
+
+      simpleGit.log(['--grep=' + answers.ticket, '--author=Robbie Bardijn', '--no-merges'], function(err, res) {
+        cb(ejs.render(reviews, {
+          branch: branch,
+          project: project,
+          commitsCount: res.total,
+          commits: res.all,
+        }));
+      });
     }
   });
 };
@@ -122,10 +136,16 @@ var askQuestions = function(branch) {
   });
 
   inquirer.prompt(questions, function (answers) {
-    console.log(answers);
-    getCodereview(answers);
-    console.log(answers);
-    // console.log(chalk.green(ejs.render(templateString, answers)));
+    getCodereview(answers, function(codereview) {
+      answers.codereview = codereview;
+      var msg = ejs.render(tpl, answers);
+      console.log(chalk.black.bgGreen('SUCCESS') + chalk.green(' Successfully generated your message!'));
+
+      ncp.copy(msg, function () {
+        console.log(chalk.black.bgGreen('SUCCESS') + chalk.green(' Copied to clipboard...opening ticket.'));
+        opn('https://ausybenelux.atlassian.net/browse/' + answers.ticket, {wait: false});
+      });
+    });
   });
 };
 
@@ -152,10 +172,4 @@ if (fs.existsSync(process.cwd() + '/.git')) {
 
 
 
-// simpleGit.log(['--grep=MOWV-69', '--author=Robbie Bardijn', '--no-merges'], function(bla, blabla) {
-//   console.log(blabla);
-// });
 
-// ncp.copy('some text BLA', function () {
-//   console.log('yeah');
-// });

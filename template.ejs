@@ -2,40 +2,17 @@
 <%= info %>
 
 *Code Review:*
-<% if (codereview !== "undefined") { %>
-_Branch_: [<%= branch %>|http://gitlab.crosscheck.be/crosscheck/<%= project %>/commits/<%= url %>]
-||Commit||Date||Description||
-<% _.each(commits, function(commit){ %>
-|[<%= commit.sha %>|http://gitlab.crosscheck.be/crosscheck/<%= project %>/commit/<%= commit.sha %>]|_~<%= commit.date %>~_|~<%= commit.message %>~|
-<% }); %>
-<% } else { %>
-\(\/\) No code change.
+<% if (codereview !== undefined) { %><%= codereview %><% } else { %>(/) No code change.
 <% } %>
-
 *GitInfo:*
-<% if (branches !== "undefined") { %>
-Merged in: *<%= branches.join(" & ") %>*
-<% } else { %>
-\(!\) Not yet merged.
-<% } %>
+<% if (git.length > 0) { %>Merged in: *<%= git.join(" & ") %>*<% } else { %>(!) Not yet merged.<% } %>
 
 *DeployInfo:*
-<% if (envs !== "undefined") { %>
-Deployed on *<%= envs.join(" & ") %>*.
-<% } else { %>
-\(!\) Not yet deployed.
-<% } %>
-
-<% if (screenshots !== "undefined") { %>
-*Screenshots:*
-<% _.each(screenshots, function(screen){ %>
-  * <%= screen %>
-<% }); %>
-<% } %>
-
-<% if (urls !== "undefined") { %>
-*Urls:*
-<% _.each(urls, function(url){ %>
-  * <%= url %>
-<% }); %>
+<% if (deploy.length > 0) { %>Deployed on *<%= deploy.join(" & ") %>*.<% } else { %>(!) Not yet deployed.<% } %>
+<% if (screenshot !== '') { %>
+*Screenshot:*
+[Click here|<%= screen %>] to watch the screenshot.
+<% } %><% if (url !== '') { %>
+*Url:*
+[Click here|<%= screen %>] to visit the test url.
 <% } %>

@@ -29,6 +29,8 @@
     "git-rev": "^0.2.1",
     "gitinfo": "^1.2.2",
     "inquirer": "^0.12.0",
-    "simple-git": "^1.28.1"
+    "opn": "^4.0.1",
+    "simple-git": "^1.28.1",
+    "underscore": "^1.8.3"
   }
 }
