@@ -1,4 +1,4 @@
-# Commentor
+<img src="http://dl.getdropbox.com/u/7422112/shares/Commentor.png" width="300px" alt="Commentor" />
 
 ## HOW TO INSTALL?
 
