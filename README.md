@@ -28,3 +28,7 @@
 
 ## ERRORS OR ISSUES?
 Please report a issue here on github.
+
+## MORE
+Special thanks to **Algeron** and **Kenneth** <br>
+See this [url](http://gitlab.crosscheck.be/one-agency/useful-developer-tools/) for more tools and info.
