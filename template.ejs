@@ -7,12 +7,12 @@
 *GitInfo:*
 <% if (git.length > 0) { %>Merged in: *<%= git.join(" & ") %>*<% } else { %>(!) Not yet merged.<% } %>
 
-*DeployInfo:*
+*Deploy Info:*
 <% if (deploy.length > 0) { %>Deployed on *<%= deploy.join(" & ") %>*.<% } else { %>(!) Not yet deployed.<% } %>
 <% if (screenshot !== '') { %>
 *Screenshot:*
-[Click here|<%= screen %>] to watch the screenshot.
+[Click here|<%= screenshot %>] to watch the screenshot.
 <% } %><% if (url !== '') { %>
 *Url:*
-[Click here|<%= screen %>] to visit the test url.
+[Click here|<%= url %>] to visit the test url.
 <% } %>
