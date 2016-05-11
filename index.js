@@ -20,13 +20,15 @@ var getCodereview = function(answers, cb) {
   simpleGit.getRemotes(true, function(err, res) {
     if(!err) {
       var branch = 'issue-' + answers.ticket;
-      origin  = _.findWhere(res, {name: 'origin'}).refs.fetch ;
-      project = origin.split('/')[1].replace('.git', '');
+      var origin  = _.findWhere(res, {name: 'origin'}).refs.fetch ;
+      var space = origin.split('/')[0].split(':')[1];
+      var project = origin.split('/')[1].replace('.git', '');
 
       simpleGit.log(['--grep=' + answers.ticket, '--author=Robbie Bardijn', '--no-merges'], function(err, res) {
         cb(ejs.render(reviews, {
           branch: branch,
           project: project,
+          space: space,
           commitsCount: res.total,
           commits: res.all,
         }));
