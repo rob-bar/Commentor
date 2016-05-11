@@ -1,4 +1,4 @@
-# Commentor
+<img src="http://dl.getdropbox.com/u/7422112/shares/Commentor.png" width="400px" alt="Commentor" />
 
 ## HOW TO INSTALL?
 
@@ -27,7 +27,7 @@
 **To make it easyer for testing you should provide a testurl.**<br><br>
 
 ## ERRORS OR ISSUES?
-Please report a issue here on github.
+Please report an issue [here](https://github.com/rob-bar/Commentor/issues) on github.
 
 ## MORE
 Special thanks to **Algeron** and **Kenneth** <br>
