@@ -1,3 +1,4 @@
 _Branch_: [<%= branch %>|http://gitlab.crosscheck.be/<%= space %>/<%= project %>/commits/<%= branch %>] / _Commits to review_: *<%= commitsCount %>*
 ||Commit||Date||Description||
-<% commits.forEach(function(commit){ %>|[<%= commit.hash.substr(0, 7) %>|http://gitlab.crosscheck.be/<%= space %>/<%= project %>/commit/<%= commit.hash.substr(0, 7) %>]|_<%= commit.date %>_| <%= commit.message.split(":")[1].split("(HEAD")[0] %> |<% }); %>
+<% commits.forEach(function(commit){ %>|[<%= commit.hash.substr(0, 7) %>|http://gitlab.crosscheck.be/<%= space %>/<%= project %>/commit/<%= commit.hash.substr(0, 7) %>]|_<%= commit.date %>_| <%= commit.message.split(":")[1].split("(HEAD")[0] %> |
+<% }); %>
